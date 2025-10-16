@@ -1,0 +1,17 @@
+syntax = "proto3";
+package Protocol;
+
+import "Enum.proto";
+import "Struct.proto";
+
+message REQ_ENTER
+{
+}
+
+message RES_SPAWN
+{
+}
+
+message NOTIFY_SPAWN
+{
+}

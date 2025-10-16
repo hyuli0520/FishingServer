@@ -6,36 +6,25 @@ extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
 enum : unsigned short
 {
-{%- for pkt in parser.total_pkt %}
-	PKT_{{pkt.name}} = {{pkt.id}},
-{%- endfor %}
+	PKT_REQ_ENTER = 1000,
+	PKT_RES_SPAWN = 1001,
+	PKT_NOTIFY_SPAWN = 1002,
 };
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
+bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt);
 
-{%- for pkt in parser.recv_pkt %}
-bool Handle_{{pkt.name}}(Session* session, Protocol::{{pkt.name}}& pkt);
-{%- endfor %}
-
-class {{output}}
+class ServerPacketHandler
 {
 public:
 	static void Init()
 	{
 		for (int i = 0; i < UINT16_MAX; i++)
 			GPacketHandler[i] = Handle_INVALID;
-
-{%- for pkt in parser.recv_pkt %}
-		GPacketHandler[PKT_{{pkt.name}}] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::{{pkt.name}}>(Handle_{{pkt.name}}, session, buffer, len); };
-{%- endfor %}
+		GPacketHandler[PKT_REQ_ENTER] = [](Session* session, BYTE* buffer, int len) {return HandlePacket<Protocol::REQ_ENTER>(Handle_REQ_ENTER, session, buffer, len); };
 	}
-
-{%- for pkt in parser.send_pkt %}
-	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::{{pkt.name}}& pkt) { return MakeSendBuffer(pkt, PKT_{{pkt.name}}); }
-{%- endfor %}
-{%- for pkt in parser.notify_pkt %}
-	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::{{pkt.name}}& pkt) { return MakeSendBuffer(pkt, PKT_{{pkt.name}}); }
-{%- endfor %}
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_SPAWN& pkt) { return MakeSendBuffer(pkt, PKT_RES_SPAWN); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::NOTIFY_SPAWN& pkt) { return MakeSendBuffer(pkt, PKT_NOTIFY_SPAWN); }
 
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
 	{
@@ -68,4 +57,3 @@ public:
 		return sendBuffer;
 	}
 };
-
