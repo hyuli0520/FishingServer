@@ -1,0 +1,8 @@
+syntax = "proto3";
+package Protocol;
+
+enum ObjectType
+{
+	PLAYER = 0; // 플레이어
+	FISH = 1; // 물고기
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package Protocol;
+
+import "Enum.proto";
+
+message ObjectInfo
+{
+	uint64 objectId = 1;
+}

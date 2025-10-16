@@ -23,7 +23,9 @@
   <ItemGroup>
     <Compile Include="PacketGenerator.py" />
     <Compile Include="ProtoParser.py" />
-    <Compile Include="Templates\PacketHandler.h" />
+    <Compile Include="..\..\MainServer\vcpkg_installed\x64-windows\x64-windows\tools\protobuf\Templates\PacketHandler.h">
+      <Link>Templates\PacketHandler.h</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\" />

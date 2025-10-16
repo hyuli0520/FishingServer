@@ -105,17 +105,21 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\cpp\;$(SolutionDir)MainServer\h\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)FishingServer\vcpkg_installed\x64-windows\x64-windows\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\cpp\;$(SolutionDir)MainServer\h\;$(SolutionDir)MainServer\Protocol\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)FishingServer\vcpkg_installed\x64-windows\x64-windows\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Libs\ServerCore\Debug\;$(SolutionDir)FishingServer\vcpkg_installed\x64-windows\x64-windows\lib\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\Libs\ServerCore\Debug\;$(SolutionDir)MainServer\vcpkg_installed\x64-windows\x64-windows\lib\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ServerCore.lib;tbb12.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call "$(SolutionDir)MainServer\vcpkg_installed\x64-windows\x64-windows\tools\protobuf\GenPackets.bat"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -131,17 +135,41 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ServerCore.lib;tbb.lib;libprotobuf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>call "$(SolutionDir)MainServer\vcpkg_installed\x64-windows\x64-windows\tools\protobuf\GenPackets.bat"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="h\pch.h" />
+    <ClInclude Include="h\ServerPacketHandler.h" />
+    <ClInclude Include="Protocol\Enum.pb.h" />
+    <ClInclude Include="Protocol\Protocol.pb.h" />
+    <ClInclude Include="Protocol\Struct.pb.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cpp\pch.cpp" />
+    <ClCompile Include="cpp\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="cpp\ServerPacketHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Protocol\Enum.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Protocol\Protocol.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Protocol\Struct.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="vcpkg.json" />
+    <None Include="vcpkg_installed\x64-windows\x64-windows\tools\protobuf\Enum.proto" />
+    <None Include="vcpkg_installed\x64-windows\x64-windows\tools\protobuf\GenPackets.bat" />
+    <None Include="vcpkg_installed\x64-windows\x64-windows\tools\protobuf\Protocol.proto" />
+    <None Include="vcpkg_installed\x64-windows\x64-windows\tools\protobuf\Struct.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
