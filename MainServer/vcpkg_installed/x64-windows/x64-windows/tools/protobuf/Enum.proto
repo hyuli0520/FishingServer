@@ -6,3 +6,18 @@ enum ObjectType
 	PLAYER = 0; // 플레이어
 	FISH = 1; // 물고기
 }
+
+enum MoveDir
+{
+	NONE = 0;
+	UP = 1; // 위
+	DOWN = 2; // 아래
+	LEFT = 3; // 왼쪽
+	RIGHT = 4; // 오른쪽
+}
+
+enum ItemType
+{
+	FISHING_ROD = 0; // 낚싯대
+	FISH = 1; // 물고기
+}

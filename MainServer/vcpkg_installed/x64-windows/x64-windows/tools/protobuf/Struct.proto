@@ -6,4 +6,26 @@ import "Enum.proto";
 message ObjectInfo
 {
 	uint64 objectId = 1;
+	string name = 2;
+	ObjectType type = 3;
+	PositionInfo posInfo = 4;
+}
+
+message PositionInfo
+{
+	Vector2 pos = 1;
+	MoveDir moveDir = 2;
+}
+
+message ItemInfo
+{
+	uint64 id = 1;
+	string name = 2;
+	ItemType type = 3;
+}
+
+message Vector2
+{
+	float x = 1;
+	float y = 2;
 }

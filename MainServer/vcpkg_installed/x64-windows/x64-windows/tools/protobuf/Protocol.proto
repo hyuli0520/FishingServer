@@ -6,12 +6,53 @@ import "Struct.proto";
 
 message REQ_ENTER
 {
+	string name = 1;
+}
+
+message RES_ENTER
+{
+	bool success = 1;
+	string name = 2;
+}
+
+message REQ_MOVE
+{
+	PositionInfo position = 1;
+}
+
+message RES_MOVE
+{
+	ObjectInfo object = 1;
+}
+
+message REQ_SAVE_INVENTORY
+{
+	repeated ItemInfo items = 1;
+}
+
+message RES_SAVE_INVENTORY
+{
+	bool success = 1;
+	repeated ItemInfo items = 2;
+}
+
+message REQ_START_FISHING
+{
+	
+}
+
+message RES_BITE_BAIT
+{
+	bool success = 1;
+	float size = 2;
 }
 
 message RES_SPAWN
 {
+	ObjectInfo object = 1;
 }
 
 message NOTIFY_SPAWN
 {
+	repeated ObjectInfo object = 1;
 }
