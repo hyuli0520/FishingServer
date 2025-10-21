@@ -142,18 +142,22 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="h\GameObject.h" />
     <ClInclude Include="h\GameSession.h" />
     <ClInclude Include="h\pch.h" />
+    <ClInclude Include="h\Player.h" />
     <ClInclude Include="h\ServerPacketHandler.h" />
     <ClInclude Include="Protocol\Enum.pb.h" />
     <ClInclude Include="Protocol\Protocol.pb.h" />
     <ClInclude Include="Protocol\Struct.pb.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cpp\GameObject.cpp" />
     <ClCompile Include="cpp\GameSession.cpp" />
     <ClCompile Include="cpp\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="cpp\Player.cpp" />
     <ClCompile Include="cpp\ServerPacketHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Protocol\Enum.pb.cc">
