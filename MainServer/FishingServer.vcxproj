@@ -142,6 +142,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="h\GameSession.h" />
     <ClInclude Include="h\pch.h" />
     <ClInclude Include="h\ServerPacketHandler.h" />
     <ClInclude Include="Protocol\Enum.pb.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Protocol\Struct.pb.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cpp\GameSession.cpp" />
     <ClCompile Include="cpp\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
