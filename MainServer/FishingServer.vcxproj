@@ -147,6 +147,7 @@
     <ClInclude Include="h\Map.h" />
     <ClInclude Include="h\pch.h" />
     <ClInclude Include="h\Player.h" />
+    <ClInclude Include="h\Region.h" />
     <ClInclude Include="h\ServerPacketHandler.h" />
     <ClInclude Include="Protocol\Enum.pb.h" />
     <ClInclude Include="Protocol\Protocol.pb.h" />
@@ -160,6 +161,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="cpp\Player.cpp" />
+    <ClCompile Include="cpp\Region.cpp" />
     <ClCompile Include="cpp\ServerPacketHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Protocol\Enum.pb.cc">

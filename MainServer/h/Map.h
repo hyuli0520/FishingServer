@@ -10,4 +10,7 @@ public:
 	void LeaveObject(shared_ptr<GameObject> object);
 
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
+
+private:
+	vector<shared_ptr<Region>> m_regions;
 };
