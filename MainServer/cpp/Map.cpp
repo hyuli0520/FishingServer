@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Map.h"
+#include <algorithm>
 
 Map::Map(int width, int height, int size)
 	: m_width(width), m_height(height), m_regionSize(size)
@@ -31,6 +32,55 @@ void Map::LeaveObject(shared_ptr<GameObject> object)
 void Map::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 {
 }
+
+pair<int, int> Map::GetRegionsPos(float x, float y)
+{
+	int rx = (int)(x / m_regionSize);
+	int ry = (int)(y / m_regionSize);
+
+	rx = clamp(rx, 0, m_regionCountX - 1);
+	ry = clamp(ry, 0, m_regionCountY - 1);
+
+	return { rx, ry };
+}
+
+vector<shared_ptr<Region>> Map::GetNearByRegions(int worldX, int worldY, int range)
+{
+	vector<shared_ptr<Region>> result;
+
+	int centerRx = worldX / m_regionSize;
+	int centerRy = worldY / m_regionSize;
+
+	for (int dy = -range; dy <= range; dy++)
+	{
+		for (int dx = -range; dx <= range; dx++)
+		{
+			int rx = centerRx + dx;
+			int ry = centerRy + dy;
+
+			if (rx < 0 || ry < 0 || rx >= m_regionCountX || ry >= m_regionCountY)
+				continue;
+
+			result.push_back(m_regions[ry][rx]);
+		}
+	}
+
+	return result;
+}
+
+vector<shared_ptr<Player>> Map::GetNearByPlayers(int worldX, int worldY, int range)
+{
+	vector<shared_ptr<Player>> result;
+	auto regions = GetNearByRegions(worldX, worldY, range);
+	for (auto& region : regions)
+	{
+		for (auto& obj : region->GetPlayers())
+			result.push_back(obj.second);
+	}
+
+	return result;
+}
+
 void Map::BeginPlay()
 {
 

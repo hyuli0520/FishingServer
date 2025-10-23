@@ -13,6 +13,11 @@ public:
 
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 
+	// Search AOI Region
+	pair<int, int> GetRegionsPos(float x, float y);
+	vector<shared_ptr<Region>> GetNearByRegions(int worldX, int worldY, int range);
+	vector<shared_ptr<Player>> GetNearByPlayers(int worldX, int worldY, int range);
+
 	void BeginPlay();
 	void Tick();
 
