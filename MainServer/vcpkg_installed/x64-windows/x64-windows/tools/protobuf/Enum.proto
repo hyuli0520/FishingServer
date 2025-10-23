@@ -19,5 +19,5 @@ enum MoveDir
 enum ItemType
 {
 	FISHING_ROD = 0; // ³¬½Ë´ë
-	FISH = 1; // ¹°°í±â
+	FISH_OBJ = 1; // ¹°°í±â
 }
