@@ -23,10 +23,24 @@ Map::~Map()
 
 void Map::EnterObject(shared_ptr<GameObject> object)
 {
+	for (auto& row : m_regions)
+	{
+		for (auto& region : row)
+		{
+			region->AddObject(object);
+		}
+	}
 }
 
 void Map::LeaveObject(shared_ptr<GameObject> object)
 {
+	for (auto& row : m_regions)
+	{
+		for (auto& region : row)
+		{
+			region->RemoveObject(object);
+		}
+	}
 }
 
 void Map::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
