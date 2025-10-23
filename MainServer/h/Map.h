@@ -5,6 +5,7 @@ class Map : public JobSerializer
 {
 public:
 	Map() = default;
+	Map(int width, int height, int size);
 	~Map();
 
 	void EnterObject(shared_ptr<GameObject> object);
@@ -16,5 +17,10 @@ public:
 	void Tick();
 
 private:
+	int m_width;
+	int m_height;
+	int m_regionSize;
+	int m_regionCountX;
+	int m_regionCountY;
 	vector<vector<shared_ptr<Region>>> m_regions;
 };
