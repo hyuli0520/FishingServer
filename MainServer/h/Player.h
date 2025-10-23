@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "GameSession.h"
 
 class GameObject;
 class Player : public GameObject
@@ -12,10 +12,13 @@ public:
 
 	void SetSession(GameSession* session);
 	GameSession* GetSession() const { return m_session; }
+	void SetPosInfo(Protocol::PositionInfo position);
+	Protocol::PositionInfo GetPosInfo() const { return m_position; }
 
 	void BeginPlay() override;
 	void Tick() override;
 
 private:
+	Protocol::PositionInfo m_position;
 	GameSession* m_session;
 };

@@ -15,6 +15,11 @@ void Player::SetSession(GameSession* session)
 	m_session = session;
 }
 
+void Player::SetPosInfo(Protocol::PositionInfo position)
+{
+	m_position = position;
+}
+
 void Player::BeginPlay()
 {
 	Super::BeginPlay();
