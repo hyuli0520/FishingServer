@@ -1,5 +1,6 @@
 #pragma once
 
+class Region;
 class Map : public JobSerializer
 {
 public:
@@ -11,6 +12,9 @@ public:
 
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 
+	void BeginPlay();
+	void Tick();
+
 private:
-	vector<shared_ptr<Region>> m_regions;
+	vector<vector<shared_ptr<Region>>> m_regions;
 };
