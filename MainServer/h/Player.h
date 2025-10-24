@@ -1,7 +1,7 @@
 #pragma once
-#include "GameSession.h"
+#include "GameObject.h"
 
-class GameObject;
+class GameSession;
 class Player : public GameObject
 {
 	using Super = GameObject;

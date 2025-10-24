@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Player.h"
-#include "GameObject.h"
+#include "GameSession.h"
 
 Player::Player(unsigned long long id)
 {
