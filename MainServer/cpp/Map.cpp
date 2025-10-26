@@ -43,6 +43,68 @@ void Map::LeaveObject(shared_ptr<GameObject> object)
 	}
 }
 
+void Map::BroadCast(vector<char> buffer, unsigned long long expectId)
+{
+	for (auto& row : m_regions)
+	{
+		for (auto& region : row)
+		{
+			for (const auto& player : region->GetPlayers())
+			{
+				if (player.first == expectId)
+					continue;
+
+				if (auto session = player.second->GetSession())
+					session->SendContext(buffer);
+			}
+		}
+	}
+}
+
+void Map::BroadCastAround(vector<char> buffer, unsigned long long expectId, int x, int y, bool enter)
+{
+	auto nearRegions = GetNearByRegions(x, y, 1);
+
+	for (auto& region : nearRegions)
+	{
+		for (auto& target : region->GetPlayers())
+		{
+			// TODO: target->Send(notify);
+		}
+	}
+}
+
+void Map::BroadCastMove(shared_ptr<GameObject> object, int oldRx, int oldRy, int newRx, int newRy)
+{
+	auto oldRegions = GetNearByRegions(oldRx, oldRy, 1);
+	auto newRegions = GetNearByRegions(newRx, newRy, 1);
+
+	unordered_set<shared_ptr<Region>> oldSet(oldRegions.begin(), oldRegions.end());
+	unordered_set<shared_ptr<Region>> newSet(newRegions.begin(), newRegions.end());
+
+	for (auto& r : oldSet)
+	{
+		if (newSet.find(r) == newSet.end())
+		{
+			for (auto& target : r->GetPlayers())
+			{
+				// TODO: target->Send(DisappearMsg);
+			}
+		}
+	}
+
+	for (auto& r : newSet)
+	{
+		if (oldSet.find(r) == oldSet.end())
+		{
+			for (auto& target : r->GetPlayers())
+			{
+				// TODO: target->Send(AppearMsg);
+			}
+		}
+	}
+}
+
 void Map::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 {
 }

@@ -10,6 +10,9 @@ public:
 
 	void EnterObject(shared_ptr<GameObject> object);
 	void LeaveObject(shared_ptr<GameObject> object);
+	void BroadCast(vector<char> buffer, unsigned long long expectId = 0);
+	void BroadCastAround(vector<char> buffer, unsigned long long expectId = 0, int x = 0, int y = 0, bool enter = false);
+	void BroadCastMove(shared_ptr<GameObject> object, int oldRx = 0, int oldRy = 0, int newRx = 0, int newRy = 0);
 
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 
