@@ -3,8 +3,15 @@
 
 Manager::Manager()
 {
+	Init();
 }
 
 Manager::~Manager()
 {
 }
+
+void Manager::Init()
+{
+}
+
+Manager* GManager;
