@@ -22,6 +22,17 @@ bool Region::AddObject(shared_ptr<GameObject> object)
 
 bool Region::RemoveObject(shared_ptr<GameObject> object)
 {
+	auto objectId = object->GetId();
+	Protocol::ObjectType type = object->GetType();
+	if (type == Protocol::PLAYER)
+	{
+		if (m_players.find(objectId) == m_players.end())
+			return false;
+
+		m_players.erase(objectId);
+	}
+
+	return true;
 }
 
 void Region::Tick()
