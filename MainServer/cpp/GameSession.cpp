@@ -44,3 +44,8 @@ Session* GameSession::GetSession()
 {
 	return this;
 }
+
+void GameSession::SetPlayer(shared_ptr<Player> player)
+{
+	m_player = player;
+}

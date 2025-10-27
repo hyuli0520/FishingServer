@@ -10,4 +10,9 @@ public:
 	void OnDisconnected() override;
 
 	Session* GetSession();
+	shared_ptr<Player> GetPlayer() { return m_player; }
+	void SetPlayer(shared_ptr<Player> player);
+
+private:
+	shared_ptr<Player> m_player;
 };

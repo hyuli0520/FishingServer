@@ -16,6 +16,7 @@ enum : unsigned short
 	PKT_RES_BITE_BAIT = 1007,
 	PKT_RES_SPAWN = 1008,
 	PKT_NOTIFY_SPAWN = 1009,
+	PKT_NOTIFY_AOI_UPDATE = 1010,
 };
 
 bool Handle_INVALID(Session* session, BYTE* buffer, int len);
@@ -42,6 +43,7 @@ public:
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_BITE_BAIT& pkt) { return MakeSendBuffer(pkt, PKT_RES_BITE_BAIT); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::RES_SPAWN& pkt) { return MakeSendBuffer(pkt, PKT_RES_SPAWN); }
 	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::NOTIFY_SPAWN& pkt) { return MakeSendBuffer(pkt, PKT_NOTIFY_SPAWN); }
+	static shared_ptr<vector<char>> MakeSendBuffer(Protocol::NOTIFY_AOI_UPDATE& pkt) { return MakeSendBuffer(pkt, PKT_NOTIFY_AOI_UPDATE); }
 
 	static bool HandlePacket(Session* session, BYTE* buffer, int len)
 	{

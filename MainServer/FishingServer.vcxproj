@@ -110,6 +110,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\;$(SolutionDir)MainServer\cpp\;$(SolutionDir)MainServer\h\;$(SolutionDir)MainServer\Protocol\;$(SolutionDir)ServerCore\cpp\;$(SolutionDir)ServerCore\h\;$(SolutionDir)ServerCore\cppx\h\;$(SolutionDir)FishingServer\vcpkg_installed\x64-windows\x64-windows\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
