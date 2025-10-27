@@ -139,6 +139,44 @@ void Map::BroadCastMove(shared_ptr<GameObject> object, int oldRx, int oldRy, int
 
 void Map::HandleMove(Session* session, Protocol::REQ_MOVE pkt)
 {
+	auto gameSession = static_cast<GameSession*>(session);
+	auto player = gameSession->GetPlayer();
+	if (!player)
+		return;
+
+	const float nx = clamp(pkt.position().pos().x(), 0.f, (float)m_width);
+	const float ny = clamp(pkt.position().pos().y(), 0.f, (float)m_height);
+
+	Protocol::RES_MOVE move;
+	Protocol::ObjectInfo* info = move.mutable_object();
+	info->set_objectid(player->GetId());
+	info->mutable_posinfo()->CopyFrom(pkt.position());
+
+	auto sendBuffer = ServerPacketHandler::MakeSendBuffer(move);
+	session->SendContext(*sendBuffer);
+
+	UpdateAOI(player, nx, ny);
+}
+
+void Map::UpdateAOI(shared_ptr<GameObject> object, int newX, int newY)
+{
+	auto player = static_pointer_cast<Player>(object);
+	const auto& cur = player->GetPosInfo().pos();
+	auto [oldRx, oldRy] = GetRegionsPos(cur.x(), cur.y());
+	auto [newRx, newRy] = GetRegionsPos(newX, newY);
+
+	Protocol::PositionInfo posInfo;
+	posInfo.mutable_pos()->set_x(newX);
+	posInfo.mutable_pos()->set_y(newY);
+	player->SetPosInfo(posInfo);
+
+	if (oldRx == newRx && oldRy == newRy)
+		return;
+
+	m_regions[oldRy][oldRx]->RemoveObject(object);
+	m_regions[newRy][newRx]->AddObject(object);
+
+	BroadCastMove(object, oldRx, oldRy, newRx, newRy);
 }
 
 pair<int, int> Map::GetRegionsPos(float x, float y)

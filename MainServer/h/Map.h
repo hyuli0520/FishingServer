@@ -16,6 +16,7 @@ public:
 
 	void HandleMove(Session* session, Protocol::REQ_MOVE pkt);
 
+	void UpdateAOI(shared_ptr<GameObject> object, int newX, int newY);
 	// Search AOI Region
 	pair<int, int> GetRegionsPos(float x, float y);
 	vector<shared_ptr<Region>> GetNearByRegions(int worldX, int worldY, int range);
