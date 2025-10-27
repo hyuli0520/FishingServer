@@ -152,8 +152,26 @@ struct NOTIFY_SPAWNDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NOTIFY_SPAWNDefaultTypeInternal _NOTIFY_SPAWN_default_instance_;
+PROTOBUF_CONSTEXPR NOTIFY_AOI_UPDATE::NOTIFY_AOI_UPDATE(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.appeared_)*/{}
+  , /*decltype(_impl_.disappeared_ids_)*/{}
+  , /*decltype(_impl_._disappeared_ids_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.updated_)*/{}
+  , /*decltype(_impl_.id_)*/uint64_t{0u}
+  , /*decltype(_impl_.snapshot_)*/false
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct NOTIFY_AOI_UPDATEDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NOTIFY_AOI_UPDATEDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NOTIFY_AOI_UPDATEDefaultTypeInternal() {}
+  union {
+    NOTIFY_AOI_UPDATE _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NOTIFY_AOI_UPDATEDefaultTypeInternal _NOTIFY_AOI_UPDATE_default_instance_;
 }  // namespace Protocol
-static ::_pb::Metadata file_level_metadata_Protocol_2eproto[10];
+static ::_pb::Metadata file_level_metadata_Protocol_2eproto[11];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_Protocol_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_Protocol_2eproto = nullptr;
 
@@ -230,6 +248,17 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_SPAWN, _impl_.object_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_AOI_UPDATE, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_AOI_UPDATE, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_AOI_UPDATE, _impl_.snapshot_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_AOI_UPDATE, _impl_.appeared_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_AOI_UPDATE, _impl_.disappeared_ids_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_AOI_UPDATE, _impl_.updated_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::Protocol::REQ_ENTER)},
@@ -242,6 +271,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 50, -1, -1, sizeof(::Protocol::RES_BITE_BAIT)},
   { 58, -1, -1, sizeof(::Protocol::RES_SPAWN)},
   { 65, -1, -1, sizeof(::Protocol::NOTIFY_SPAWN)},
+  { 72, -1, -1, sizeof(::Protocol::NOTIFY_AOI_UPDATE)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -255,6 +285,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::Protocol::_RES_BITE_BAIT_default_instance_._instance,
   &::Protocol::_RES_SPAWN_default_instance_._instance,
   &::Protocol::_NOTIFY_SPAWN_default_instance_._instance,
+  &::Protocol::_NOTIFY_AOI_UPDATE_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -271,7 +302,11 @@ const char descriptor_table_protodef_Protocol_2eproto[] PROTOBUF_SECTION_VARIABL
   "success\030\001 \001(\010\022\014\n\004size\030\002 \001(\002\"1\n\tRES_SPAWN"
   "\022$\n\006object\030\001 \001(\0132\024.Protocol.ObjectInfo\"4"
   "\n\014NOTIFY_SPAWN\022$\n\006object\030\001 \003(\0132\024.Protoco"
-  "l.ObjectInfob\006proto3"
+  "l.ObjectInfo\"\231\001\n\021NOTIFY_AOI_UPDATE\022\n\n\002id"
+  "\030\001 \001(\004\022\020\n\010snapshot\030\002 \001(\010\022&\n\010appeared\030\003 \003"
+  "(\0132\024.Protocol.ObjectInfo\022\027\n\017disappeared_"
+  "ids\030\004 \003(\004\022%\n\007updated\030\005 \003(\0132\024.Protocol.Ob"
+  "jectInfob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_deps[2] = {
   &::descriptor_table_Enum_2eproto,
@@ -279,9 +314,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_Protocol_2eproto_de
 };
 static ::_pbi::once_flag descriptor_table_Protocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_Protocol_2eproto = {
-    false, false, 540, descriptor_table_protodef_Protocol_2eproto,
+    false, false, 696, descriptor_table_protodef_Protocol_2eproto,
     "Protocol.proto",
-    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 10,
+    &descriptor_table_Protocol_2eproto_once, descriptor_table_Protocol_2eproto_deps, 2, 11,
     schemas, file_default_instances, TableStruct_Protocol_2eproto::offsets,
     file_level_metadata_Protocol_2eproto, file_level_enum_descriptors_Protocol_2eproto,
     file_level_service_descriptors_Protocol_2eproto,
@@ -2178,6 +2213,333 @@ void NOTIFY_SPAWN::InternalSwap(NOTIFY_SPAWN* other) {
       file_level_metadata_Protocol_2eproto[9]);
 }
 
+// ===================================================================
+
+class NOTIFY_AOI_UPDATE::_Internal {
+ public:
+};
+
+void NOTIFY_AOI_UPDATE::clear_appeared() {
+  _impl_.appeared_.Clear();
+}
+void NOTIFY_AOI_UPDATE::clear_updated() {
+  _impl_.updated_.Clear();
+}
+NOTIFY_AOI_UPDATE::NOTIFY_AOI_UPDATE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:Protocol.NOTIFY_AOI_UPDATE)
+}
+NOTIFY_AOI_UPDATE::NOTIFY_AOI_UPDATE(const NOTIFY_AOI_UPDATE& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  NOTIFY_AOI_UPDATE* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.appeared_){from._impl_.appeared_}
+    , decltype(_impl_.disappeared_ids_){from._impl_.disappeared_ids_}
+    , /*decltype(_impl_._disappeared_ids_cached_byte_size_)*/{0}
+    , decltype(_impl_.updated_){from._impl_.updated_}
+    , decltype(_impl_.id_){}
+    , decltype(_impl_.snapshot_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.id_, &from._impl_.id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.snapshot_) -
+    reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.snapshot_));
+  // @@protoc_insertion_point(copy_constructor:Protocol.NOTIFY_AOI_UPDATE)
+}
+
+inline void NOTIFY_AOI_UPDATE::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.appeared_){arena}
+    , decltype(_impl_.disappeared_ids_){arena}
+    , /*decltype(_impl_._disappeared_ids_cached_byte_size_)*/{0}
+    , decltype(_impl_.updated_){arena}
+    , decltype(_impl_.id_){uint64_t{0u}}
+    , decltype(_impl_.snapshot_){false}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+NOTIFY_AOI_UPDATE::~NOTIFY_AOI_UPDATE() {
+  // @@protoc_insertion_point(destructor:Protocol.NOTIFY_AOI_UPDATE)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void NOTIFY_AOI_UPDATE::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.appeared_.~RepeatedPtrField();
+  _impl_.disappeared_ids_.~RepeatedField();
+  _impl_.updated_.~RepeatedPtrField();
+}
+
+void NOTIFY_AOI_UPDATE::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void NOTIFY_AOI_UPDATE::Clear() {
+// @@protoc_insertion_point(message_clear_start:Protocol.NOTIFY_AOI_UPDATE)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.appeared_.Clear();
+  _impl_.disappeared_ids_.Clear();
+  _impl_.updated_.Clear();
+  ::memset(&_impl_.id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.snapshot_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.snapshot_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NOTIFY_AOI_UPDATE::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool snapshot = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.snapshot_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .Protocol.ObjectInfo appeared = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_appeared(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated uint64 disappeared_ids = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedUInt64Parser(_internal_mutable_disappeared_ids(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 32) {
+          _internal_add_disappeared_ids(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .Protocol.ObjectInfo updated = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_updated(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* NOTIFY_AOI_UPDATE::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Protocol.NOTIFY_AOI_UPDATE)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_id(), target);
+  }
+
+  // bool snapshot = 2;
+  if (this->_internal_snapshot() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(2, this->_internal_snapshot(), target);
+  }
+
+  // repeated .Protocol.ObjectInfo appeared = 3;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_appeared_size()); i < n; i++) {
+    const auto& repfield = this->_internal_appeared(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated uint64 disappeared_ids = 4;
+  {
+    int byte_size = _impl_._disappeared_ids_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteUInt64Packed(
+          4, _internal_disappeared_ids(), byte_size, target);
+    }
+  }
+
+  // repeated .Protocol.ObjectInfo updated = 5;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_updated_size()); i < n; i++) {
+    const auto& repfield = this->_internal_updated(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(5, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Protocol.NOTIFY_AOI_UPDATE)
+  return target;
+}
+
+size_t NOTIFY_AOI_UPDATE::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Protocol.NOTIFY_AOI_UPDATE)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .Protocol.ObjectInfo appeared = 3;
+  total_size += 1UL * this->_internal_appeared_size();
+  for (const auto& msg : this->_impl_.appeared_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated uint64 disappeared_ids = 4;
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      UInt64Size(this->_impl_.disappeared_ids_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._disappeared_ids_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // repeated .Protocol.ObjectInfo updated = 5;
+  total_size += 1UL * this->_internal_updated_size();
+  for (const auto& msg : this->_impl_.updated_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // uint64 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_id());
+  }
+
+  // bool snapshot = 2;
+  if (this->_internal_snapshot() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NOTIFY_AOI_UPDATE::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    NOTIFY_AOI_UPDATE::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NOTIFY_AOI_UPDATE::GetClassData() const { return &_class_data_; }
+
+
+void NOTIFY_AOI_UPDATE::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<NOTIFY_AOI_UPDATE*>(&to_msg);
+  auto& from = static_cast<const NOTIFY_AOI_UPDATE&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Protocol.NOTIFY_AOI_UPDATE)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.appeared_.MergeFrom(from._impl_.appeared_);
+  _this->_impl_.disappeared_ids_.MergeFrom(from._impl_.disappeared_ids_);
+  _this->_impl_.updated_.MergeFrom(from._impl_.updated_);
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  if (from._internal_snapshot() != 0) {
+    _this->_internal_set_snapshot(from._internal_snapshot());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NOTIFY_AOI_UPDATE::CopyFrom(const NOTIFY_AOI_UPDATE& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Protocol.NOTIFY_AOI_UPDATE)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NOTIFY_AOI_UPDATE::IsInitialized() const {
+  return true;
+}
+
+void NOTIFY_AOI_UPDATE::InternalSwap(NOTIFY_AOI_UPDATE* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.appeared_.InternalSwap(&other->_impl_.appeared_);
+  _impl_.disappeared_ids_.InternalSwap(&other->_impl_.disappeared_ids_);
+  _impl_.updated_.InternalSwap(&other->_impl_.updated_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(NOTIFY_AOI_UPDATE, _impl_.snapshot_)
+      + sizeof(NOTIFY_AOI_UPDATE::_impl_.snapshot_)
+      - PROTOBUF_FIELD_OFFSET(NOTIFY_AOI_UPDATE, _impl_.id_)>(
+          reinterpret_cast<char*>(&_impl_.id_),
+          reinterpret_cast<char*>(&other->_impl_.id_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NOTIFY_AOI_UPDATE::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_Protocol_2eproto_getter, &descriptor_table_Protocol_2eproto_once,
+      file_level_metadata_Protocol_2eproto[10]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
@@ -2220,6 +2582,10 @@ Arena::CreateMaybeMessage< ::Protocol::RES_SPAWN >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::Protocol::NOTIFY_SPAWN*
 Arena::CreateMaybeMessage< ::Protocol::NOTIFY_SPAWN >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Protocol::NOTIFY_SPAWN >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Protocol::NOTIFY_AOI_UPDATE*
+Arena::CreateMaybeMessage< ::Protocol::NOTIFY_AOI_UPDATE >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Protocol::NOTIFY_AOI_UPDATE >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

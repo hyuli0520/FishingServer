@@ -56,3 +56,12 @@ message NOTIFY_SPAWN
 {
 	repeated ObjectInfo object = 1;
 }
+
+message NOTIFY_AOI_UPDATE
+{
+	uint64 id = 1;
+	bool snapshot = 2;
+	repeated ObjectInfo appeared = 3;
+	repeated uint64 disappeared_ids = 4;
+	repeated ObjectInfo updated = 5;
+}

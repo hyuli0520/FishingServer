@@ -48,6 +48,9 @@ struct TableStruct_Protocol_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_Protocol_2eproto;
 namespace Protocol {
+class NOTIFY_AOI_UPDATE;
+struct NOTIFY_AOI_UPDATEDefaultTypeInternal;
+extern NOTIFY_AOI_UPDATEDefaultTypeInternal _NOTIFY_AOI_UPDATE_default_instance_;
 class NOTIFY_SPAWN;
 struct NOTIFY_SPAWNDefaultTypeInternal;
 extern NOTIFY_SPAWNDefaultTypeInternal _NOTIFY_SPAWN_default_instance_;
@@ -80,6 +83,7 @@ struct RES_SPAWNDefaultTypeInternal;
 extern RES_SPAWNDefaultTypeInternal _RES_SPAWN_default_instance_;
 }  // namespace Protocol
 PROTOBUF_NAMESPACE_OPEN
+template<> ::Protocol::NOTIFY_AOI_UPDATE* Arena::CreateMaybeMessage<::Protocol::NOTIFY_AOI_UPDATE>(Arena*);
 template<> ::Protocol::NOTIFY_SPAWN* Arena::CreateMaybeMessage<::Protocol::NOTIFY_SPAWN>(Arena*);
 template<> ::Protocol::REQ_ENTER* Arena::CreateMaybeMessage<::Protocol::REQ_ENTER>(Arena*);
 template<> ::Protocol::REQ_MOVE* Arena::CreateMaybeMessage<::Protocol::REQ_MOVE>(Arena*);
@@ -1640,6 +1644,230 @@ class NOTIFY_SPAWN final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_Protocol_2eproto;
 };
+// -------------------------------------------------------------------
+
+class NOTIFY_AOI_UPDATE final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Protocol.NOTIFY_AOI_UPDATE) */ {
+ public:
+  inline NOTIFY_AOI_UPDATE() : NOTIFY_AOI_UPDATE(nullptr) {}
+  ~NOTIFY_AOI_UPDATE() override;
+  explicit PROTOBUF_CONSTEXPR NOTIFY_AOI_UPDATE(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  NOTIFY_AOI_UPDATE(const NOTIFY_AOI_UPDATE& from);
+  NOTIFY_AOI_UPDATE(NOTIFY_AOI_UPDATE&& from) noexcept
+    : NOTIFY_AOI_UPDATE() {
+    *this = ::std::move(from);
+  }
+
+  inline NOTIFY_AOI_UPDATE& operator=(const NOTIFY_AOI_UPDATE& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NOTIFY_AOI_UPDATE& operator=(NOTIFY_AOI_UPDATE&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NOTIFY_AOI_UPDATE& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const NOTIFY_AOI_UPDATE* internal_default_instance() {
+    return reinterpret_cast<const NOTIFY_AOI_UPDATE*>(
+               &_NOTIFY_AOI_UPDATE_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(NOTIFY_AOI_UPDATE& a, NOTIFY_AOI_UPDATE& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(NOTIFY_AOI_UPDATE* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NOTIFY_AOI_UPDATE* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NOTIFY_AOI_UPDATE* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<NOTIFY_AOI_UPDATE>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const NOTIFY_AOI_UPDATE& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const NOTIFY_AOI_UPDATE& from) {
+    NOTIFY_AOI_UPDATE::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(NOTIFY_AOI_UPDATE* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Protocol.NOTIFY_AOI_UPDATE";
+  }
+  protected:
+  explicit NOTIFY_AOI_UPDATE(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAppearedFieldNumber = 3,
+    kDisappearedIdsFieldNumber = 4,
+    kUpdatedFieldNumber = 5,
+    kIdFieldNumber = 1,
+    kSnapshotFieldNumber = 2,
+  };
+  // repeated .Protocol.ObjectInfo appeared = 3;
+  int appeared_size() const;
+  private:
+  int _internal_appeared_size() const;
+  public:
+  void clear_appeared();
+  ::Protocol::ObjectInfo* mutable_appeared(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+      mutable_appeared();
+  private:
+  const ::Protocol::ObjectInfo& _internal_appeared(int index) const;
+  ::Protocol::ObjectInfo* _internal_add_appeared();
+  public:
+  const ::Protocol::ObjectInfo& appeared(int index) const;
+  ::Protocol::ObjectInfo* add_appeared();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+      appeared() const;
+
+  // repeated uint64 disappeared_ids = 4;
+  int disappeared_ids_size() const;
+  private:
+  int _internal_disappeared_ids_size() const;
+  public:
+  void clear_disappeared_ids();
+  private:
+  uint64_t _internal_disappeared_ids(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+      _internal_disappeared_ids() const;
+  void _internal_add_disappeared_ids(uint64_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+      _internal_mutable_disappeared_ids();
+  public:
+  uint64_t disappeared_ids(int index) const;
+  void set_disappeared_ids(int index, uint64_t value);
+  void add_disappeared_ids(uint64_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+      disappeared_ids() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+      mutable_disappeared_ids();
+
+  // repeated .Protocol.ObjectInfo updated = 5;
+  int updated_size() const;
+  private:
+  int _internal_updated_size() const;
+  public:
+  void clear_updated();
+  ::Protocol::ObjectInfo* mutable_updated(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+      mutable_updated();
+  private:
+  const ::Protocol::ObjectInfo& _internal_updated(int index) const;
+  ::Protocol::ObjectInfo* _internal_add_updated();
+  public:
+  const ::Protocol::ObjectInfo& updated(int index) const;
+  ::Protocol::ObjectInfo* add_updated();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+      updated() const;
+
+  // uint64 id = 1;
+  void clear_id();
+  uint64_t id() const;
+  void set_id(uint64_t value);
+  private:
+  uint64_t _internal_id() const;
+  void _internal_set_id(uint64_t value);
+  public:
+
+  // bool snapshot = 2;
+  void clear_snapshot();
+  bool snapshot() const;
+  void set_snapshot(bool value);
+  private:
+  bool _internal_snapshot() const;
+  void _internal_set_snapshot(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Protocol.NOTIFY_AOI_UPDATE)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo > appeared_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t > disappeared_ids_;
+    mutable std::atomic<int> _disappeared_ids_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo > updated_;
+    uint64_t id_;
+    bool snapshot_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_Protocol_2eproto;
+};
 // ===================================================================
 
 
@@ -2233,9 +2461,176 @@ NOTIFY_SPAWN::object() const {
   return _impl_.object_;
 }
 
+// -------------------------------------------------------------------
+
+// NOTIFY_AOI_UPDATE
+
+// uint64 id = 1;
+inline void NOTIFY_AOI_UPDATE::clear_id() {
+  _impl_.id_ = uint64_t{0u};
+}
+inline uint64_t NOTIFY_AOI_UPDATE::_internal_id() const {
+  return _impl_.id_;
+}
+inline uint64_t NOTIFY_AOI_UPDATE::id() const {
+  // @@protoc_insertion_point(field_get:Protocol.NOTIFY_AOI_UPDATE.id)
+  return _internal_id();
+}
+inline void NOTIFY_AOI_UPDATE::_internal_set_id(uint64_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void NOTIFY_AOI_UPDATE::set_id(uint64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:Protocol.NOTIFY_AOI_UPDATE.id)
+}
+
+// bool snapshot = 2;
+inline void NOTIFY_AOI_UPDATE::clear_snapshot() {
+  _impl_.snapshot_ = false;
+}
+inline bool NOTIFY_AOI_UPDATE::_internal_snapshot() const {
+  return _impl_.snapshot_;
+}
+inline bool NOTIFY_AOI_UPDATE::snapshot() const {
+  // @@protoc_insertion_point(field_get:Protocol.NOTIFY_AOI_UPDATE.snapshot)
+  return _internal_snapshot();
+}
+inline void NOTIFY_AOI_UPDATE::_internal_set_snapshot(bool value) {
+  
+  _impl_.snapshot_ = value;
+}
+inline void NOTIFY_AOI_UPDATE::set_snapshot(bool value) {
+  _internal_set_snapshot(value);
+  // @@protoc_insertion_point(field_set:Protocol.NOTIFY_AOI_UPDATE.snapshot)
+}
+
+// repeated .Protocol.ObjectInfo appeared = 3;
+inline int NOTIFY_AOI_UPDATE::_internal_appeared_size() const {
+  return _impl_.appeared_.size();
+}
+inline int NOTIFY_AOI_UPDATE::appeared_size() const {
+  return _internal_appeared_size();
+}
+inline ::Protocol::ObjectInfo* NOTIFY_AOI_UPDATE::mutable_appeared(int index) {
+  // @@protoc_insertion_point(field_mutable:Protocol.NOTIFY_AOI_UPDATE.appeared)
+  return _impl_.appeared_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+NOTIFY_AOI_UPDATE::mutable_appeared() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.NOTIFY_AOI_UPDATE.appeared)
+  return &_impl_.appeared_;
+}
+inline const ::Protocol::ObjectInfo& NOTIFY_AOI_UPDATE::_internal_appeared(int index) const {
+  return _impl_.appeared_.Get(index);
+}
+inline const ::Protocol::ObjectInfo& NOTIFY_AOI_UPDATE::appeared(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.NOTIFY_AOI_UPDATE.appeared)
+  return _internal_appeared(index);
+}
+inline ::Protocol::ObjectInfo* NOTIFY_AOI_UPDATE::_internal_add_appeared() {
+  return _impl_.appeared_.Add();
+}
+inline ::Protocol::ObjectInfo* NOTIFY_AOI_UPDATE::add_appeared() {
+  ::Protocol::ObjectInfo* _add = _internal_add_appeared();
+  // @@protoc_insertion_point(field_add:Protocol.NOTIFY_AOI_UPDATE.appeared)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+NOTIFY_AOI_UPDATE::appeared() const {
+  // @@protoc_insertion_point(field_list:Protocol.NOTIFY_AOI_UPDATE.appeared)
+  return _impl_.appeared_;
+}
+
+// repeated uint64 disappeared_ids = 4;
+inline int NOTIFY_AOI_UPDATE::_internal_disappeared_ids_size() const {
+  return _impl_.disappeared_ids_.size();
+}
+inline int NOTIFY_AOI_UPDATE::disappeared_ids_size() const {
+  return _internal_disappeared_ids_size();
+}
+inline void NOTIFY_AOI_UPDATE::clear_disappeared_ids() {
+  _impl_.disappeared_ids_.Clear();
+}
+inline uint64_t NOTIFY_AOI_UPDATE::_internal_disappeared_ids(int index) const {
+  return _impl_.disappeared_ids_.Get(index);
+}
+inline uint64_t NOTIFY_AOI_UPDATE::disappeared_ids(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.NOTIFY_AOI_UPDATE.disappeared_ids)
+  return _internal_disappeared_ids(index);
+}
+inline void NOTIFY_AOI_UPDATE::set_disappeared_ids(int index, uint64_t value) {
+  _impl_.disappeared_ids_.Set(index, value);
+  // @@protoc_insertion_point(field_set:Protocol.NOTIFY_AOI_UPDATE.disappeared_ids)
+}
+inline void NOTIFY_AOI_UPDATE::_internal_add_disappeared_ids(uint64_t value) {
+  _impl_.disappeared_ids_.Add(value);
+}
+inline void NOTIFY_AOI_UPDATE::add_disappeared_ids(uint64_t value) {
+  _internal_add_disappeared_ids(value);
+  // @@protoc_insertion_point(field_add:Protocol.NOTIFY_AOI_UPDATE.disappeared_ids)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+NOTIFY_AOI_UPDATE::_internal_disappeared_ids() const {
+  return _impl_.disappeared_ids_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >&
+NOTIFY_AOI_UPDATE::disappeared_ids() const {
+  // @@protoc_insertion_point(field_list:Protocol.NOTIFY_AOI_UPDATE.disappeared_ids)
+  return _internal_disappeared_ids();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+NOTIFY_AOI_UPDATE::_internal_mutable_disappeared_ids() {
+  return &_impl_.disappeared_ids_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< uint64_t >*
+NOTIFY_AOI_UPDATE::mutable_disappeared_ids() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.NOTIFY_AOI_UPDATE.disappeared_ids)
+  return _internal_mutable_disappeared_ids();
+}
+
+// repeated .Protocol.ObjectInfo updated = 5;
+inline int NOTIFY_AOI_UPDATE::_internal_updated_size() const {
+  return _impl_.updated_.size();
+}
+inline int NOTIFY_AOI_UPDATE::updated_size() const {
+  return _internal_updated_size();
+}
+inline ::Protocol::ObjectInfo* NOTIFY_AOI_UPDATE::mutable_updated(int index) {
+  // @@protoc_insertion_point(field_mutable:Protocol.NOTIFY_AOI_UPDATE.updated)
+  return _impl_.updated_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >*
+NOTIFY_AOI_UPDATE::mutable_updated() {
+  // @@protoc_insertion_point(field_mutable_list:Protocol.NOTIFY_AOI_UPDATE.updated)
+  return &_impl_.updated_;
+}
+inline const ::Protocol::ObjectInfo& NOTIFY_AOI_UPDATE::_internal_updated(int index) const {
+  return _impl_.updated_.Get(index);
+}
+inline const ::Protocol::ObjectInfo& NOTIFY_AOI_UPDATE::updated(int index) const {
+  // @@protoc_insertion_point(field_get:Protocol.NOTIFY_AOI_UPDATE.updated)
+  return _internal_updated(index);
+}
+inline ::Protocol::ObjectInfo* NOTIFY_AOI_UPDATE::_internal_add_updated() {
+  return _impl_.updated_.Add();
+}
+inline ::Protocol::ObjectInfo* NOTIFY_AOI_UPDATE::add_updated() {
+  ::Protocol::ObjectInfo* _add = _internal_add_updated();
+  // @@protoc_insertion_point(field_add:Protocol.NOTIFY_AOI_UPDATE.updated)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Protocol::ObjectInfo >&
+NOTIFY_AOI_UPDATE::updated() const {
+  // @@protoc_insertion_point(field_list:Protocol.NOTIFY_AOI_UPDATE.updated)
+  return _impl_.updated_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
