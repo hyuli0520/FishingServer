@@ -8,3 +8,8 @@ ObjectManager::ObjectManager()
 ObjectManager::~ObjectManager()
 {
 }
+
+void ObjectManager::Init()
+{
+	m_idGenerator = 1;
+}
