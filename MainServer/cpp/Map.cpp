@@ -43,33 +43,37 @@ void Map::LeaveObject(shared_ptr<GameObject> object)
 	}
 }
 
-void Map::BroadCast(vector<char> buffer, unsigned long long expectId)
+void Map::BroadCast(vector<char>& buffer, unsigned long long expectId)
 {
 	for (auto& row : m_regions)
 	{
 		for (auto& region : row)
 		{
-			for (const auto& player : region->GetPlayers())
+			for (auto& [id, player] : region->GetPlayers())
 			{
-				if (player.first == expectId)
+				if (id == expectId) 
 					continue;
 
-				if (auto session = player.second->GetSession())
+				if (auto session = player->GetSession())
 					session->SendContext(buffer);
 			}
 		}
 	}
 }
 
-void Map::BroadCastAround(vector<char> buffer, unsigned long long expectId, int x, int y, bool enter)
+void Map::BroadCastAround(vector<char>& buffer, unsigned long long expectId, int x, int y, bool enter)
 {
 	auto nearRegions = GetNearByRegions(x, y, 1);
 
 	for (auto& region : nearRegions)
 	{
-		for (auto& target : region->GetPlayers())
+		for (auto& [id, player] : region->GetPlayers())
 		{
-			// TODO: target->Send(notify);
+			if (id == expectId) 
+				continue;
+
+			if (auto session = player->GetSession())
+				session->SendContext(buffer);
 		}
 	}
 }
