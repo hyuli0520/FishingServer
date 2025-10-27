@@ -23,24 +23,18 @@ Map::~Map()
 
 void Map::EnterObject(shared_ptr<GameObject> object)
 {
-	for (auto& row : m_regions)
-	{
-		for (auto& region : row)
-		{
-			region->AddObject(object);
-		}
-	}
+	auto player = static_pointer_cast<Player>(object);
+	auto& cur = player->GetPosInfo().pos();
+	auto [rx, ry] = GetRegionsPos(cur.x(), cur.y());
+	m_regions[ry][rx]->AddObject(object);
 }
 
 void Map::LeaveObject(shared_ptr<GameObject> object)
 {
-	for (auto& row : m_regions)
-	{
-		for (auto& region : row)
-		{
-			region->RemoveObject(object);
-		}
-	}
+	auto player = static_pointer_cast<Player>(object);
+	auto& cur = player->GetPosInfo().pos();
+	auto [rx, ry] = GetRegionsPos(cur.x(), cur.y());
+	m_regions[ry][rx]->RemoveObject(object);
 }
 
 void Map::BroadCast(vector<char>& buffer, unsigned long long expectId)
