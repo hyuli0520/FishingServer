@@ -51,7 +51,7 @@ void Map::BroadCast(vector<char>& buffer, unsigned long long expectId)
 		{
 			for (auto& [id, player] : region->GetPlayers())
 			{
-				if (id == expectId) 
+				if (id == expectId)
 					continue;
 
 				if (auto session = player->GetSession())
@@ -69,7 +69,7 @@ void Map::BroadCastAround(vector<char>& buffer, unsigned long long expectId, int
 	{
 		for (auto& [id, player] : region->GetPlayers())
 		{
-			if (id == expectId) 
+			if (id == expectId)
 				continue;
 
 			if (auto session = player->GetSession())
@@ -86,13 +86,37 @@ void Map::BroadCastMove(shared_ptr<GameObject> object, int oldRx, int oldRy, int
 	unordered_set<shared_ptr<Region>> oldSet(oldRegions.begin(), oldRegions.end());
 	unordered_set<shared_ptr<Region>> newSet(newRegions.begin(), newRegions.end());
 
+	auto player = static_pointer_cast<Player>(object);
+	Protocol::NOTIFY_AOI_UPDATE appear;
+	appear.set_id(player->GetId());
+	appear.set_snapshot(false);
+	{
+		auto info = appear.add_appeared();
+		info->set_objectid(player->GetId());
+		Protocol::Vector2 pos = player->GetPosInfo().pos();
+		info->mutable_posinfo()->set_allocated_pos(&pos);
+		info->set_type(player->GetType());
+	}
+	auto appearBuffer = ServerPacketHandler::MakeSendBuffer(appear);
+
+	Protocol::NOTIFY_AOI_UPDATE disappear;
+	disappear.set_id(player->GetId());
+	disappear.set_snapshot(false);
+	disappear.add_disappeared_ids(player->GetId());
+	auto disappearBuffer = ServerPacketHandler::MakeSendBuffer(disappear);
+
+	const unsigned long long exceptId = player->GetId();
 	for (auto& r : oldSet)
 	{
 		if (newSet.find(r) == newSet.end())
 		{
-			for (auto& target : r->GetPlayers())
+			for (auto& [id, p] : r->GetPlayers())
 			{
-				// TODO: target->Send(DisappearMsg);
+				if (id == exceptId)
+					continue;
+
+				if (auto s = p->GetSession())
+					s->SendContext(*appearBuffer);
 			}
 		}
 	}
@@ -101,9 +125,13 @@ void Map::BroadCastMove(shared_ptr<GameObject> object, int oldRx, int oldRy, int
 	{
 		if (oldSet.find(r) == oldSet.end())
 		{
-			for (auto& target : r->GetPlayers())
+			for (auto& [id, p] : r->GetPlayers())
 			{
-				// TODO: target->Send(AppearMsg);
+				if (id == exceptId)
+					continue;
+
+				if (auto s = p->GetSession())
+					s->SendContext(*disappearBuffer);
 			}
 		}
 	}
