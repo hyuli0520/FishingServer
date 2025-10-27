@@ -147,6 +147,7 @@
     <ClInclude Include="h\GameSession.h" />
     <ClInclude Include="h\Manager.h" />
     <ClInclude Include="h\Map.h" />
+    <ClInclude Include="h\ObjectManager.h" />
     <ClInclude Include="h\pch.h" />
     <ClInclude Include="h\Player.h" />
     <ClInclude Include="h\Region.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="cpp\GameSession.cpp" />
     <ClCompile Include="cpp\Manager.cpp" />
     <ClCompile Include="cpp\Map.cpp" />
+    <ClCompile Include="cpp\ObjectManager.cpp" />
     <ClCompile Include="cpp\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
