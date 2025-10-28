@@ -16,6 +16,9 @@ bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
 
 bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt)
 {
+	auto gameSession = static_cast<GameSession*>(session);
+	if (auto map = gameSession->GetPlayer()->GetMap())
+		map->PushJob(&Map::HandleMove, session, pkt);
 	return false;
 }
 
