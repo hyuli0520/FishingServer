@@ -12,6 +12,7 @@ Manager::~Manager()
 
 void Manager::Init()
 {
+	m_object->Init();
 }
 
 Manager* GManager;
