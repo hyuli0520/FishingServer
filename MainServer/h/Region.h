@@ -1,9 +1,10 @@
 #pragma once
 
-class Region : enable_shared_from_this<Region>
+class Region : public enable_shared_from_this<Region>
 {
 public:
 	Region() = default;
+	Region(int x, int y) : m_x(x), m_y(y) {}
 	~Region();
 
 	int GetX() const { return m_x; }

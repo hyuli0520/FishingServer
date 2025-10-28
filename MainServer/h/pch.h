@@ -9,3 +9,7 @@
 #include "GameSession.h"
 #include "Map.h"
 #include "Region.h"
+
+#include "Manager.h"
+#include "ObjectManager.h"
+#include "MapManager.h"
