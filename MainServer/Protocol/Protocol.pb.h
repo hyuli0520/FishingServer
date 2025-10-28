@@ -1444,6 +1444,7 @@ class RES_SPAWN final :
 
   enum : int {
     kObjectFieldNumber = 1,
+    kMineFieldNumber = 2,
   };
   // .Protocol.ObjectInfo object = 1;
   bool has_object() const;
@@ -1463,6 +1464,15 @@ class RES_SPAWN final :
       ::Protocol::ObjectInfo* object);
   ::Protocol::ObjectInfo* unsafe_arena_release_object();
 
+  // bool mine = 2;
+  void clear_mine();
+  bool mine() const;
+  void set_mine(bool value);
+  private:
+  bool _internal_mine() const;
+  void _internal_set_mine(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:Protocol.RES_SPAWN)
  private:
   class _Internal;
@@ -1472,6 +1482,7 @@ class RES_SPAWN final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::Protocol::ObjectInfo* object_;
+    bool mine_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2348,6 +2359,26 @@ inline void RES_SPAWN::set_allocated_object(::Protocol::ObjectInfo* object) {
   }
   _impl_.object_ = object;
   // @@protoc_insertion_point(field_set_allocated:Protocol.RES_SPAWN.object)
+}
+
+// bool mine = 2;
+inline void RES_SPAWN::clear_mine() {
+  _impl_.mine_ = false;
+}
+inline bool RES_SPAWN::_internal_mine() const {
+  return _impl_.mine_;
+}
+inline bool RES_SPAWN::mine() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_SPAWN.mine)
+  return _internal_mine();
+}
+inline void RES_SPAWN::_internal_set_mine(bool value) {
+  
+  _impl_.mine_ = value;
+}
+inline void RES_SPAWN::set_mine(bool value) {
+  _internal_set_mine(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_SPAWN.mine)
 }
 
 // -------------------------------------------------------------------

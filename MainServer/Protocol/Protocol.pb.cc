@@ -129,6 +129,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RES_SPAWN::RES_SPAWN(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.object_)*/nullptr
+  , /*decltype(_impl_.mine_)*/false
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct RES_SPAWNDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RES_SPAWNDefaultTypeInternal()
@@ -241,6 +242,7 @@ const uint32_t TableStruct_Protocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _impl_.object_),
+  PROTOBUF_FIELD_OFFSET(::Protocol::RES_SPAWN, _impl_.mine_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Protocol::NOTIFY_SPAWN, _internal_metadata_),
   ~0u,  // no _extensions_

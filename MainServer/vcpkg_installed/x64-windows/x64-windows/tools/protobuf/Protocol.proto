@@ -50,6 +50,7 @@ message RES_BITE_BAIT
 message RES_SPAWN
 {
 	ObjectInfo object = 1;
+	bool mine = 2;
 }
 
 message NOTIFY_SPAWN
