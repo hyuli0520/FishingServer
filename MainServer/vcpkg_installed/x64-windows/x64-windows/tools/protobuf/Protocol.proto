@@ -6,13 +6,13 @@ import "Struct.proto";
 
 message REQ_ENTER
 {
-	string name = 1;
+	uint64 id = 1;
 }
 
 message RES_ENTER
 {
 	bool success = 1;
-	string name = 2;
+	uint64 id = 2;
 }
 
 message REQ_MOVE

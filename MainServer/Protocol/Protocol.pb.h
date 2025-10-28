@@ -220,20 +220,15 @@ class REQ_ENTER final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNameFieldNumber = 1,
+    kIdFieldNumber = 1,
   };
-  // string name = 1;
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  // uint64 id = 1;
+  void clear_id();
+  uint64_t id() const;
+  void set_id(uint64_t value);
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
+  uint64_t _internal_id() const;
+  void _internal_set_id(uint64_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:Protocol.REQ_ENTER)
@@ -244,7 +239,7 @@ class REQ_ENTER final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    uint64_t id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -373,21 +368,16 @@ class RES_ENTER final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNameFieldNumber = 2,
+    kIdFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string name = 2;
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  // uint64 id = 2;
+  void clear_id();
+  uint64_t id() const;
+  void set_id(uint64_t value);
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
+  uint64_t _internal_id() const;
+  void _internal_set_id(uint64_t value);
   public:
 
   // bool success = 1;
@@ -407,7 +397,7 @@ class RES_ENTER final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    uint64_t id_;
     bool success_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1879,54 +1869,24 @@ class NOTIFY_AOI_UPDATE final :
 #endif  // __GNUC__
 // REQ_ENTER
 
-// string name = 1;
-inline void REQ_ENTER::clear_name() {
-  _impl_.name_.ClearToEmpty();
+// uint64 id = 1;
+inline void REQ_ENTER::clear_id() {
+  _impl_.id_ = uint64_t{0u};
 }
-inline const std::string& REQ_ENTER::name() const {
-  // @@protoc_insertion_point(field_get:Protocol.REQ_ENTER.name)
-  return _internal_name();
+inline uint64_t REQ_ENTER::_internal_id() const {
+  return _impl_.id_;
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void REQ_ENTER::set_name(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.REQ_ENTER.name)
+inline uint64_t REQ_ENTER::id() const {
+  // @@protoc_insertion_point(field_get:Protocol.REQ_ENTER.id)
+  return _internal_id();
 }
-inline std::string* REQ_ENTER::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:Protocol.REQ_ENTER.name)
-  return _s;
-}
-inline const std::string& REQ_ENTER::_internal_name() const {
-  return _impl_.name_.Get();
-}
-inline void REQ_ENTER::_internal_set_name(const std::string& value) {
+inline void REQ_ENTER::_internal_set_id(uint64_t value) {
   
-  _impl_.name_.Set(value, GetArenaForAllocation());
+  _impl_.id_ = value;
 }
-inline std::string* REQ_ENTER::_internal_mutable_name() {
-  
-  return _impl_.name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* REQ_ENTER::release_name() {
-  // @@protoc_insertion_point(field_release:Protocol.REQ_ENTER.name)
-  return _impl_.name_.Release();
-}
-inline void REQ_ENTER::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.name_.IsDefault()) {
-    _impl_.name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.REQ_ENTER.name)
+inline void REQ_ENTER::set_id(uint64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:Protocol.REQ_ENTER.id)
 }
 
 // -------------------------------------------------------------------
@@ -1953,54 +1913,24 @@ inline void RES_ENTER::set_success(bool value) {
   // @@protoc_insertion_point(field_set:Protocol.RES_ENTER.success)
 }
 
-// string name = 2;
-inline void RES_ENTER::clear_name() {
-  _impl_.name_.ClearToEmpty();
+// uint64 id = 2;
+inline void RES_ENTER::clear_id() {
+  _impl_.id_ = uint64_t{0u};
 }
-inline const std::string& RES_ENTER::name() const {
-  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER.name)
-  return _internal_name();
+inline uint64_t RES_ENTER::_internal_id() const {
+  return _impl_.id_;
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void RES_ENTER::set_name(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER.name)
+inline uint64_t RES_ENTER::id() const {
+  // @@protoc_insertion_point(field_get:Protocol.RES_ENTER.id)
+  return _internal_id();
 }
-inline std::string* RES_ENTER::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:Protocol.RES_ENTER.name)
-  return _s;
-}
-inline const std::string& RES_ENTER::_internal_name() const {
-  return _impl_.name_.Get();
-}
-inline void RES_ENTER::_internal_set_name(const std::string& value) {
+inline void RES_ENTER::_internal_set_id(uint64_t value) {
   
-  _impl_.name_.Set(value, GetArenaForAllocation());
+  _impl_.id_ = value;
 }
-inline std::string* RES_ENTER::_internal_mutable_name() {
-  
-  return _impl_.name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* RES_ENTER::release_name() {
-  // @@protoc_insertion_point(field_release:Protocol.RES_ENTER.name)
-  return _impl_.name_.Release();
-}
-inline void RES_ENTER::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.name_.IsDefault()) {
-    _impl_.name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Protocol.RES_ENTER.name)
+inline void RES_ENTER::set_id(uint64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:Protocol.RES_ENTER.id)
 }
 
 // -------------------------------------------------------------------
