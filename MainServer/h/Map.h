@@ -21,6 +21,7 @@ public:
 	pair<int, int> GetRegionsPos(float x, float y);
 	vector<shared_ptr<Region>> GetNearByRegions(int worldX, int worldY, int range);
 	vector<shared_ptr<Player>> GetNearByPlayers(int worldX, int worldY, int range);
+	vector<vector<shared_ptr<Region>>> GetAllRegions() const { return m_regions; }
 
 	void BeginPlay();
 	void Tick();

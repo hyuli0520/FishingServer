@@ -11,11 +11,16 @@ bool Handle_INVALID(Session* session, BYTE* buffer, int len)
 
 bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
 {
+	if (auto gMap = GManager->Map()->Main())
+		gMap->PushJob(&MapManager::HandleEnterMap, session, pkt);
 	return false;
 }
 
 bool Handle_REQ_MOVE(Session* session, Protocol::REQ_MOVE& pkt)
 {
+	auto gameSession = static_cast<GameSession*>(session);
+	if (auto map = gameSession->GetPlayer()->GetMap())
+		map->PushJob(&Map::HandleMove, session, pkt);
 	return false;
 }
 

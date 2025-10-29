@@ -11,3 +11,8 @@ void GameObject::Tick()
 	m_delta = static_cast<float>(now - m_lastTick);
 	m_lastTick = GetTickCount64();
 }
+
+void GameObject::SetMap(shared_ptr<Map> map)
+{
+	m_map = map;
+}
