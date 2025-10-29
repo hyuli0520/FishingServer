@@ -2,7 +2,7 @@
 using MapId = unsigned long long;
 
 class Map;
-class MapManager
+class MapManager : public JobSerializer
 {
 public:
 	MapManager();
@@ -12,7 +12,7 @@ public:
 	shared_ptr<Map> GetMap(MapId id) const;
 
 	void SetMain(MapId id);
-	shared_ptr<Map> Main() const { GetMap(m_mainId); }
+	shared_ptr<Map> Main() const { return GetMap(m_mainId); }
 
 	void HandleEnterMap(Session* session, Protocol::REQ_ENTER pkt);
 
