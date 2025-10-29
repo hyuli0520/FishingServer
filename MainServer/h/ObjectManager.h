@@ -1,7 +1,7 @@
 #pragma once
 
 class GameObject;
-class ObjectManager
+class ObjectManager : public JobSerializer
 {
 public:
 	ObjectManager();
