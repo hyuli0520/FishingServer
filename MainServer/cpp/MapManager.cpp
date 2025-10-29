@@ -65,42 +65,36 @@ void MapManager::HandleEnterMap(Session* session, Protocol::REQ_ENTER pkt)
     }
 
     {
-        Protocol::RES_SPAWN spawn;
-        auto info = spawn.mutable_object();
-        info->set_objectid(myPlayer->GetId());
-        info->set_type(myPlayer->GetType());
-        info->mutable_posinfo()->mutable_pos()->set_x(myPlayer->GetPosInfo().pos().x());
-        info->mutable_posinfo()->mutable_pos()->set_y(myPlayer->GetPosInfo().pos().y());
-        spawn.set_mine(false);
-
-        auto sendBuffer = ServerPacketHandler::MakeSendBuffer(spawn);
-        map->BroadCast(*sendBuffer);
-    }
-
-    {
         Protocol::NOTIFY_SPAWN notify;
-        for (auto& r : map->GetAllRegions())
+        const auto& pos = myPlayer->GetPosInfo().pos();
+        auto neighbors = map->GetNearByPlayers(pos.x(), pos.y(), 1);
+
+        for (auto& p : neighbors)
         {
-            for (auto& region : r)
-            {
-                for (auto& it : region->GetPlayers())
-                {
-                    auto& player = it.second;
-                    if (player->GetId() != myPlayer->GetId())
-                    {
-                        Protocol::ObjectInfo* info = notify.add_object();
-                        info->set_objectid(player->GetId());
+            if (p->GetId() == myPlayer->GetId())
+                continue;
 
-
-                        Protocol::PositionInfo* posInfo = new Protocol::PositionInfo();
-                        *posInfo = player->GetPosInfo();
-                        info->set_allocated_posinfo(posInfo);
-                    }
-                }
-            }
+            auto info = notify.add_object();
+            info->set_objectid(myPlayer->GetId());
+            info->set_type(myPlayer->GetType());
+            info->mutable_posinfo()->mutable_pos()->set_x(myPlayer->GetPosInfo().pos().x());
+            info->mutable_posinfo()->mutable_pos()->set_y(myPlayer->GetPosInfo().pos().y());
         }
 
         auto sendBuffer = ServerPacketHandler::MakeSendBuffer(notify);
         session->SendContext(*sendBuffer);
+    }
+
+    {
+        Protocol::NOTIFY_SPAWN notify;
+        auto info = notify.add_object();
+        info->set_objectid(myPlayer->GetId());
+        info->set_type(myPlayer->GetType());
+        info->mutable_posinfo()->mutable_pos()->set_x(myPlayer->GetPosInfo().pos().x());
+        info->mutable_posinfo()->mutable_pos()->set_y(myPlayer->GetPosInfo().pos().y());
+
+        auto sendBuffer = ServerPacketHandler::MakeSendBuffer(notify);
+        const auto& pos = myPlayer->GetPosInfo().pos();
+        map->BroadCastAround(*sendBuffer, myPlayer->GetId(), pos.x(), pos.y(), true);
     }
 }
