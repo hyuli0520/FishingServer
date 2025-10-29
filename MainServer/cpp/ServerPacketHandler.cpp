@@ -11,6 +11,8 @@ bool Handle_INVALID(Session* session, BYTE* buffer, int len)
 
 bool Handle_REQ_ENTER(Session* session, Protocol::REQ_ENTER& pkt)
 {
+	if (auto gMap = GManager->Map()->Main())
+		gMap->PushJob(&MapManager::HandleEnterRoom, session, pkt);
 	return false;
 }
 

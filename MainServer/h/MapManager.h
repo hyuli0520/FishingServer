@@ -14,6 +14,8 @@ public:
 	void SetMain(MapId id);
 	shared_ptr<Map> Main() const { GetMap(m_mainId); }
 
+	void HandleEnterMap(Session* session, Protocol::REQ_ENTER pkt);
+
 private:
 	concurrent_unordered_map<MapId, shared_ptr<Map>> m_maps;
 	MapId m_mainId = 1;
